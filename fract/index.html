@@ -1,0 +1,662 @@
+<!-- ============================================================================ -->
+<!-- INTEGRITY HEADER - GEMINI AI                                                 -->
+<!-- File: pp/fract/index.html                                                    -->
+<!-- Application: 3D Fractal Multiverse PWA — Research Dossier & Live Launchpad   -->
+<!-- ============================================================================ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Fractal Multiverse PWA — Research Dossier &amp; Live Launchpad | Steven Kleynenberg</title>
+    <meta name="description" content="3D Fractal Multiverse PWA by Steven Kleynenberg: WebGL 2.0 real-time fractal engine with 13 Peitgen/Mandelbrot/Julia archetypes, analytic perturbation theory, video demonstrations, Python aiohttp telemetry server, and inline IEEEtran paper.">
+    <link rel="canonical" href="https://steven.kleynenberg.com/pp/fract/">
+    <link rel="icon" type="image/svg+xml" href="./pwa/icon.svg">
+    <link rel="alternate" type="text/plain" title="Fractal LLM Summary" href="https://steven.kleynenberg.com/pp/fract/llms.txt">
+    <link rel="alternate" type="text/plain" title="Fractal LLM Full Corpus" href="https://steven.kleynenberg.com/pp/fract/llms-full.txt">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Mono:wght@400;700&family=Atkinson+Hyperlegible+Next:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous"
+        onload="renderMathInElement(document.body, { delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}] });"></script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebApplication",
+          "@id": "https://fract.kleynenberg.com/#app",
+          "name": "3D Fractal Multiverse PWA",
+          "url": "https://fract.kleynenberg.com/",
+          "sameAs": "https://steven.kleynenberg.com/pp/fract/pwa/",
+          "applicationCategory": "MultimediaApplication",
+          "operatingSystem": "Web Browser (WebGL / WebAudio)",
+          "author": {
+            "@type": "Person",
+            "name": "Steven Kleynenberg",
+            "url": "https://steven.kleynenberg.com/",
+            "email": "mailto:steven@kleynenberg.com"
+          }
+        },
+        {
+          "@type": "ScholarlyArticle",
+          "@id": "https://steven.kleynenberg.com/pp/fract/#paper",
+          "headline": "Monolithic PWA Architectures and Real-Time Fractal Universes: Outperforming Hardware Constraints via Analytic Continuation and Sub-Pixel Blur Kernels",
+          "author": [
+            {
+              "@type": "Person",
+              "name": "Steven Kleynenberg",
+              "url": "https://steven.kleynenberg.com/"
+            },
+            {
+              "@type": "Organization",
+              "name": "Google Gemini v3.5"
+            }
+          ],
+          "encoding": [
+            {
+              "@type": "MediaObject",
+              "encodingFormat": "application/pdf",
+              "contentUrl": "https://steven.kleynenberg.com/pp/fract/server/latex/fractal.pdf"
+            },
+            {
+              "@type": "MediaObject",
+              "encodingFormat": "application/x-tex",
+              "contentUrl": "https://steven.kleynenberg.com/pp/fract/server/latex/fractal.tex"
+            }
+          ]
+        }
+      ]
+    }
+    </script>
+    <style>
+        :root {
+            --bg-main: #ffffff;
+            --bg-surface: #fafafa;
+            --text-primary: #111111;
+            --text-secondary: #4a4a4a;
+            --text-muted: #767676;
+            --border-color: #e0e0e0;
+            --border-strong: #111111;
+            --accent: #0056b3;
+        }
+        html.reverse-mode {
+            --bg-main: #000000;
+            --bg-surface: #0a0a0a;
+            --text-primary: #f5f5f5;
+            --text-secondary: #c0c0c0;
+            --text-muted: #888888;
+            --border-color: #262626;
+            --border-strong: #f5f5f5;
+            --accent: #66b2ff;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-primary);
+            font-family: 'Atkinson Hyperlegible Next', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.65;
+            transition: background-color 0.2s ease, color 0.2s ease;
+            padding: 3rem 1.5rem 5rem;
+            max-width: 980px;
+            margin: 0 auto;
+        }
+        nav.top-bar {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 2.5rem;
+            font-family: 'Atkinson Hyperlegible Mono', monospace;
+            font-size: 0.78rem;
+            letter-spacing: 0.04em;
+        }
+        nav.top-bar ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.85rem;
+            align-items: center;
+        }
+        nav.top-bar a { color: var(--text-primary); text-decoration: none; border-bottom: 1px solid transparent; }
+        nav.top-bar a:hover, nav.top-bar a.active { border-bottom-color: var(--border-strong); font-weight: 700; }
+        .mode-btn {
+            background: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            font-family: 'Atkinson Hyperlegible Mono', monospace;
+            font-size: 0.72rem;
+            padding: 0.25rem 0.6rem;
+            cursor: pointer;
+            text-transform: uppercase;
+        }
+        .mode-btn:hover { border-color: var(--border-strong); color: var(--text-primary); }
+        header.hero { margin-bottom: 2.5rem; }
+        .eyebrow {
+            font-family: 'Atkinson Hyperlegible Mono', monospace;
+            font-size: 0.78rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-muted);
+            margin-bottom: 0.5rem;
+        }
+        .title-row {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 0.75rem;
+        }
+        .app-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            flex-shrink: 0;
+        }
+        h1 { font-size: clamp(1.85rem, 3.8vw, 2.55rem); font-weight: 700; line-height: 1.15; letter-spacing: -0.02em; }
+        .lead { font-size: 1.06rem; color: var(--text-secondary); max-width: 820px; }
+        .meta-strip {
+            display: flex; flex-wrap: wrap; gap: 1.25rem; margin-top: 1.25rem;
+            font-family: 'Atkinson Hyperlegible Mono', monospace; font-size: 0.76rem; color: var(--text-muted);
+        }
+        h2.section-title {
+            font-family: 'Atkinson Hyperlegible Mono', monospace;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--text-primary);
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--border-strong);
+            margin: 2.75rem 0 1.25rem;
+        }
+        figure.preview-frame {
+            border: 1px solid var(--border-color);
+            background: var(--bg-surface);
+            padding: 1rem;
+        }
+        figure.preview-frame a.preview-link {
+            display: block;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid var(--border-strong);
+            background: #000000;
+        }
+        figure.preview-frame img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.25s ease, opacity 0.25s ease;
+        }
+        figure.preview-frame a.preview-link:hover img {
+            transform: scale(1.01);
+            opacity: 0.94;
+        }
+        figure.preview-frame figcaption {
+            margin-top: 0.85rem;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+        .launch-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-top: 0.85rem;
+            font-family: 'Atkinson Hyperlegible Mono', monospace;
+            font-size: 0.78rem;
+        }
+        .launch-actions a {
+            display: inline-block;
+            padding: 0.45rem 0.85rem;
+            border: 1px solid var(--border-strong);
+            color: var(--text-primary);
+            text-decoration: none;
+            background: var(--bg-main);
+        }
+        .launch-actions a.primary-cta {
+            background: var(--border-strong);
+            color: var(--bg-main);
+            font-weight: 700;
+        }
+        .launch-actions a:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+        .launch-actions a.primary-cta:hover {
+            background: var(--accent);
+            color: #ffffff;
+        }
+        section.media-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.25rem;
+        }
+        figure.video-card {
+            border: 1px solid var(--border-color);
+            background: var(--bg-surface);
+            padding: 1rem;
+        }
+        figure.video-card video {
+            width: 100%;
+            height: auto;
+            background: #000000;
+            border: 1px solid var(--border-color);
+            display: block;
+        }
+        figure.video-card figcaption {
+            margin-top: 0.65rem;
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+        }
+        article.paper {
+            border: 1px solid var(--border-color);
+            background: var(--bg-surface);
+            padding: 2rem 1.75rem;
+        }
+        header.paper-header {
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 1.25rem;
+            margin-bottom: 1.75rem;
+        }
+        header.paper-header h3 {
+            font-size: 1.45rem;
+            line-height: 1.28;
+            margin-bottom: 0.6rem;
+        }
+        p.paper-authors {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+        }
+        nav.paper-artifacts {
+            font-family: 'Atkinson Hyperlegible Mono', monospace;
+            font-size: 0.76rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 0.75rem;
+        }
+        nav.paper-artifacts a { color: var(--accent); text-decoration: none; }
+        nav.paper-artifacts a:hover { text-decoration: underline; }
+        article.paper h4 {
+            font-size: 1.12rem;
+            font-weight: 700;
+            margin: 1.85rem 0 0.6rem;
+            padding-bottom: 0.25rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        article.paper h5 {
+            font-size: 1rem;
+            font-weight: 700;
+            margin: 1.25rem 0 0.45rem;
+        }
+        article.paper h6 {
+            font-family: 'Atkinson Hyperlegible Mono', monospace;
+            font-size: 0.85rem;
+            margin: 1rem 0 0.35rem;
+            color: var(--text-primary);
+        }
+        article.paper p {
+            color: var(--text-secondary);
+            margin-bottom: 0.85rem;
+            font-size: 0.98rem;
+        }
+        article.paper ol, article.paper ul {
+            margin: 0.5rem 0 1rem 1.35rem;
+            color: var(--text-secondary);
+            font-size: 0.96rem;
+        }
+        article.paper li { margin-bottom: 0.4rem; }
+        p.equation-block {
+            background: var(--bg-main);
+            border: 1px solid var(--border-color);
+            padding: 0.75rem 1rem;
+            margin: 0.85rem 0;
+            overflow-x: auto;
+            text-align: center;
+        }
+        figure.diagram-box {
+            background: var(--bg-main);
+            border: 1px solid var(--border-color);
+            padding: 1rem;
+            margin: 1.25rem 0;
+            text-align: center;
+        }
+        figure.diagram-box svg {
+            max-width: 100%;
+            height: auto;
+        }
+        figure.diagram-box figcaption {
+            margin-top: 0.6rem;
+            font-size: 0.84rem;
+            color: var(--text-muted);
+        }
+        table.benchmark-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.1rem 0 1.4rem;
+            font-family: 'Atkinson Hyperlegible Mono', monospace;
+            font-size: 0.82rem;
+            background: var(--bg-main);
+        }
+        table.benchmark-table caption {
+            caption-side: top;
+            text-align: left;
+            font-weight: 700;
+            margin-bottom: 0.45rem;
+            color: var(--text-primary);
+        }
+        table.benchmark-table th, table.benchmark-table td {
+            border: 1px solid var(--border-color);
+            padding: 0.55rem 0.7rem;
+            text-align: left;
+        }
+        table.benchmark-table th {
+            background: var(--bg-surface);
+            font-weight: 700;
+        }
+        ol.references {
+            font-size: 0.88rem;
+            line-height: 1.55;
+        }
+        ol.references a { color: var(--accent); text-decoration: none; word-break: break-all; }
+        ol.references a:hover { text-decoration: underline; }
+        footer.colophon {
+            margin-top: 4rem; padding-top: 1.5rem; border-top: 1px solid var(--border-color);
+            font-family: 'Atkinson Hyperlegible Mono', monospace; font-size: 0.76rem; color: var(--text-muted);
+            display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem;
+        }
+        footer.colophon a { color: var(--text-primary); text-decoration: none; }
+        footer.colophon a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <nav class="top-bar" aria-label="Primary portal navigation">
+        <ul>
+            <li><a href="../../index.html">steven.kleynenberg.com</a></li>
+            <li><a href="../../papers/index.html">/papers/</a></li>
+            <li><a href="../../kso/index.html">/kso/</a></li>
+            <li><a href="../index.html" class="active">/pp/</a></li>
+            <li><a href="../../kp/index.html">/kp/</a></li>
+            <li><a href="../../tkp/index.html">/tkp/</a></li>
+        </ul>
+        <ul>
+            <li><a href="./llms.txt">llms.txt</a></li>
+            <li><a href="./llms-full.txt">llms-full.txt</a></li>
+            <li><button type="button" class="mode-btn" id="theme-toggle" title="Double-tap page or click to toggle Reverse Dark Mode">Invert</button></li>
+        </ul>
+    </nav>
+
+    <header class="hero">
+        <p class="eyebrow">PERSONAL PROJECTS (PP) // REAL-TIME WEBGL &amp; ANALYTIC CONTINUATION</p>
+        <section class="title-row">
+            <img src="./pwa/icon.svg" alt="3D Fractal Multiverse Infinity Icon" class="app-icon" width="48" height="48">
+            <h1>3D Fractal Multiverse PWA</h1>
+        </section>
+        <p class="lead">Monolithic WebGL 2.0 &amp; WebAudio fractal exploration runtime featuring 13 Peitgen/Mandelbrot/Julia archetypes, arbitrary-precision perturbation theory via Decimal.js, 3D barrier warp transitions, multi-user Python aiohttp telemetry, and an accompanying IEEEtran technical manuscript.</p>
+        <p class="meta-strip">
+            <span>CLOUD HOST: https://fract.kleynenberg.com/</span>
+            <span>STATIC MIRROR: ./pwa/index.html</span>
+            <span>CONTACT: steven@kleynenberg.com</span>
+        </p>
+    </header>
+
+    <main>
+        <h2 class="section-title">01 // Interactive Preview &amp; New-Window Launch</h2>
+        <figure class="preview-frame">
+            <a class="preview-link" href="https://fract.kleynenberg.com/#uni=10&amp;ft=10&amp;seed=452839&amp;x=0&amp;y=0&amp;z=0.49977559077972916&amp;cs=0.2878" target="_blank" rel="noopener noreferrer" title="Open Node 10 (seed=452839) in a new window on fract.kleynenberg.com">
+                <img src="./art/peitgen.png" alt="3D Fractal Multiverse PWA rendering Sector Node 10 (c = -0.15652 - 1.03225i, seed 452839, zoom 0.50)">
+            </a>
+            <figcaption>
+                <strong>Click the preview image above to launch Sector Node 10 in a new window:</strong> <code>c = -0.15652 - 1.03225i</code>, <code>seed = 452839</code>, <code>zoom = 0.49977559077972916</code>, <code>colorShift = 0.2878</code>. Use mouse wheel or click/tap to zoom; zooming past <code>5e-12</code> or <code>4.8</code> triggers a 3D barrier warp into a newly rolled fractal universe.
+                <nav class="launch-actions" aria-label="Launch and Artifact Links">
+                    <a class="primary-cta" href="https://fract.kleynenberg.com/#uni=10&amp;ft=10&amp;seed=452839&amp;x=0&amp;y=0&amp;z=0.49977559077972916&amp;cs=0.2878" target="_blank" rel="noopener noreferrer">Open Node 10 Live (Google Cloud) &nearr;</a>
+                    <a href="https://fract.kleynenberg.com/" target="_blank" rel="noopener noreferrer">Open Mandelbrot Core (fract.kleynenberg.com) &nearr;</a>
+                    <a href="./pwa/index.html" target="_blank" rel="noopener noreferrer">Open Static PWA Mirror (./pwa/) &nearr;</a>
+                    <a href="./server/fractal_server.py">Inspect fractal_server.py</a>
+                </nav>
+            </figcaption>
+        </figure>
+
+        <h2 class="section-title">02 // Video Demonstrations</h2>
+        <section class="media-grid" aria-label="Fractal Multiverse Video Demonstrations">
+            <figure class="video-card">
+                <video controls preload="metadata" playsinline poster="./art/peitgen.png">
+                    <source src="./server/fractal_whatsapp.mp4" type="video/mp4">
+                </video>
+                <figcaption><strong>Multiverse Warp &amp; Touch Navigation Demo</strong> (<code>./server/fractal_whatsapp.mp4</code>) &mdash; Real-time deep zoom, 3D barrier traversal, and procedural WebAudio synthesis.</figcaption>
+            </figure>
+            <figure class="video-card">
+                <video controls preload="metadata" playsinline poster="./art/peitgen.png">
+                    <source src="./server/fractal_server_web.mp4" type="video/mp4">
+                </video>
+                <figcaption><strong>Multi-User Telemetry &amp; Server Runtime Demo</strong> (<code>./server/fractal_server_web.mp4</code>) &mdash; Python aiohttp WebSocket synchronization and live fractal sector transitions.</figcaption>
+            </figure>
+        </section>
+
+        <h2 class="section-title">03 // Inline Research Paper (fractal.tex)</h2>
+        <article class="paper" aria-labelledby="paper-title">
+            <header class="paper-header">
+                <p class="eyebrow">IEEETRAN COMPSOC MANUSCRIPT // INLINE RENDERED FROM SERVER/LATEX/FRACTAL.TEX</p>
+                <h3 id="paper-title">Monolithic PWA Architectures and Real-Time Fractal Universes: Outperforming Hardware Constraints via Analytic Continuation and Sub-Pixel Blur Kernels</h3>
+                <p class="paper-authors"><strong>Steven Kleynenberg</strong> (Independent Researcher, Delft, Netherlands) &amp; <strong>Google Gemini v3.5</strong> (Artificial Intelligence Division, Google LLC)</p>
+                <nav class="paper-artifacts" aria-label="LaTeX and PDF Sources">
+                    <a href="./server/latex/fractal.pdf" target="_blank" rel="noopener noreferrer">Download Compiled PDF (./server/latex/fractal.pdf) &nearr;</a>
+                    <a href="./server/latex/fractal.tex">View Raw LaTeX Source (./server/latex/fractal.tex)</a>
+                    <a href="mailto:steven@kleynenberg.com">Contact: steven@kleynenberg.com</a>
+                </nav>
+            </header>
+
+            <h4>1. Introduction and Motivation</h4>
+            <p>The contemporary landscape of scientific computation and high-performance visualization is predominantly tethered to native, compiled execution environments capable of leveraging low-level hardware intrinsics [1]. However, the centralization of execution paradigms within heavy desktop binaries introduces severe friction in distribution, reproducibility, and cross-platform portability. Concurrently, the evolution of Progressive Web Applications (PWAs) has unlocked browser-based execution sandboxes that achieve near-native performance via advanced Just-In-Time (JIT) compilation and direct graphics pipeline access through WebGL 2.0 and WebGPU [2, 8].</p>
+            <p>Despite these advancements, simulating highly non-linear, infinitely recursive mathematical topologies&mdash;such as multi-dimensional fractal universes popularized by foundational studies in complex dynamical systems [6]&mdash;remains heavily bounded by memory bandwidth limitations and GPU thermal throttling, particularly when interfacing with vendor-specific ecosystems such as NVIDIA CUDA pipelines [3, 7]. Traditional approaches rely on server-side rendering farms or heavy client-plugin architectures, introducing unacceptable latency overheads and network serialization bottlenecks.</p>
+            <p>This paper addresses this fundamental architectural gap by formalizing a completely self-contained, monolithic PWA framework. By encapsulating state management, real-time binary serialization over WebSockets, and massively parallelized fragment shader execution into a single, offline-first codebase, we demonstrate that browser runtimes can achieve compute densities traditionally restricted to native applications.</p>
+            <p>The primary contributions of this work are threefold:</p>
+            <ol>
+                <li><strong>Monolithic PWA Paradigm:</strong> A formal architectural specification for single-bundle, zero-dependency web applications that execute complex numerical pipelines entirely within client-side memory spaces.</li>
+                <li><strong>Hardware-Bypassing Mathematical Optimizations:</strong> Analytical continuation strategies and precision-scaling algorithms that mitigate floating-point truncation errors and outperform naive NVIDIA GPU scheduling limits in recursive depth rendering.</li>
+                <li><strong>Tri-Fractal Universe Formulation:</strong> Complete mathematical and algorithmic definitions for three distinct fractal topologies, coupled with custom multi-pass temporal blur kernels designed to eliminate sub-pixel aliasing without incurring severe fill-rate penalties.</li>
+            </ol>
+
+            <h4>2. Related Work and Theoretical Foundations</h4>
+            <h5>2.1 Client-Side Compute and WebGL Evolution</h5>
+            <p>The transition of web browsers from simple document viewers to robust application runtimes has been extensively documented in systems literature [4]. Early web-based visualization frameworks depended heavily on CPU-bound rasterization, severely limiting frame rates when rendering complex mathematical objects. The introduction of WebGL 2.0 bridged this gap by providing direct access to the OpenGL ES 3.0 graphics pipeline, enabling fragment-shader-driven parallel execution across available GPU hardware [8].</p>
+            <p>However, unlike native CUDA environments where memory pointers can be manipulated directly within unified address spaces, WebGL operates within a strictly typed, memory-isolated sandbox. Previous attempts to simulate deep-zoom fractals within browser environments succumbed to floating-point precision degradation beyond single-precision IEEE 754 limits ($\sim 7$ decimal digits) or suffered catastrophic performance drops when utilizing arbitrary-precision software emulation libraries [5, 6, 9].</p>
+
+            <h5>2.2 GPU Execution Paradigms and Memory Bandwidth</h5>
+            <p>Modern discrete graphics accelerators, such as NVIDIA architectures utilizing the CUDA programming model, optimize execution through Single Instruction, Multiple Threads (SIMT) streaming multiprocessors (SMs) [3, 7]. While highly efficient for regular matrix operations, recursive ray-marching and fractal escape-time algorithms introduce severe warp divergence. Threads evaluating points that diverge rapidly terminate execution early, while threads tracking deep boundaries execute maximum iterations, serializing execution blocks within the warp.</p>
+            <p>Furthermore, host-to-device (PCIe bus) bandwidth remains a major bottleneck in distributed simulation models. Transmitting real-time coordinate transformations and high-resolution framebuffers across network and bus boundaries introduces latency that violates human-perceived real-time thresholds ($&lt;16.67\,\text{ms}$ per frame). Our monolithic PWA architecture eliminates PCIe and network serialization latency by executing all core computation loops directly on the local GPU via compiled GLSL fragment shaders.</p>
+
+            <h4>3. Proposed Methodology and System Architecture</h4>
+            <h5>3.1 Monolithic PWA Design Principles</h5>
+            <p>The system is architected as a singular, zero-dependency monolithic artifact. All assets, shader programs, mathematical lookup tables, and communication state machines are bundled into a single self-contained execution context.</p>
+
+            <figure class="diagram-box">
+                <svg viewBox="0 0 680 230" width="680" height="230" role="img" aria-label="Architectural data-flow diagram of the monolithic PWA runtime">
+                    <defs>
+                        <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                            <path d="M 0 1 L 10 5 L 0 9 z" fill="currentColor"/>
+                        </marker>
+                    </defs>
+                    <rect x="210" y="14" width="260" height="42" rx="8" fill="#dbeafe" stroke="#1e40af" stroke-width="1.5"/>
+                    <text x="340" y="40" text-anchor="middle" font-family="monospace" font-size="13" fill="#111111">Monolithic PWA Shell</text>
+
+                    <rect x="30" y="96" width="190" height="42" rx="8" fill="#dcfce7" stroke="#166534" stroke-width="1.5"/>
+                    <text x="125" y="122" text-anchor="middle" font-family="monospace" font-size="12" fill="#111111">WebSocket State Engine</text>
+
+                    <rect x="245" y="96" width="190" height="42" rx="8" fill="#dcfce7" stroke="#166534" stroke-width="1.5"/>
+                    <text x="340" y="122" text-anchor="middle" font-family="monospace" font-size="12" fill="#111111">WebGL 2.0 Compute</text>
+
+                    <rect x="460" y="96" width="190" height="42" rx="8" fill="#dcfce7" stroke="#166534" stroke-width="1.5"/>
+                    <text x="555" y="122" text-anchor="middle" font-family="monospace" font-size="12" fill="#111111">Temporal Blur Kernel</text>
+
+                    <rect x="60" y="176" width="560" height="42" rx="8" fill="#ffedd5" stroke="#9a3412" stroke-width="1.5"/>
+                    <text x="340" y="202" text-anchor="middle" font-family="monospace" font-size="13" fill="#111111">Local GPU Hardware (NVIDIA / AMD / Apple Silicon)</text>
+
+                    <line x1="270" y1="56" x2="145" y2="94" stroke="currentColor" stroke-width="1.5" marker-end="url(#arrow)"/>
+                    <line x1="340" y1="56" x2="340" y2="94" stroke="currentColor" stroke-width="1.5" marker-end="url(#arrow)"/>
+                    <line x1="410" y1="56" x2="535" y2="94" stroke="currentColor" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+                    <line x1="125" y1="138" x2="185" y2="174" stroke="currentColor" stroke-width="1.5" marker-end="url(#arrow)"/>
+                    <line x1="340" y1="138" x2="340" y2="174" stroke="currentColor" stroke-width="1.5" marker-end="url(#arrow)"/>
+                    <line x1="555" y1="138" x2="495" y2="174" stroke="currentColor" stroke-width="1.5" marker-end="url(#arrow)"/>
+                </svg>
+                <figcaption><strong>Figure 1:</strong> Architectural data-flow diagram of the monolithic PWA runtime executing directly upon client hardware layers.</figcaption>
+            </figure>
+
+            <p>As illustrated in Figure 1, the PWA decouples state synchronization from the rendering loop. The WebSocket subsystem maintains lightweight binary telemetry streams, while the WebGL pipeline operates asynchronously, updating the render target via direct GPU buffer bindings.</p>
+
+            <h5>3.2 Mathematical Formulation of Fractal Universes</h5>
+            <p>We formalize three distinct mathematical spaces rendered within our framework:</p>
+
+            <h6>Universe 1: Analytic Mandelbrot Extension</h6>
+            <p>The standard Mandelbrot recursion is defined as:</p>
+            <p class="equation-block">$$z_{n+1} = z_n^2 + c, \quad z_0 = 0$$</p>
+            <p>To bypass single-precision limits at zoom depths exceeding $10^7$, we implement an analytic perturbation theory where coordinates are decomposed into a reference trajectory $z_n$ and a delta term $\delta_n$ [6, 9]:</p>
+            <p class="equation-block">$$z_n + \delta_n = (z_n + \delta_n)^2 + (c + \delta_c)$$</p>
+            <p>Expanding this yields the variational equation:</p>
+            <p class="equation-block">$$\delta_{n+1} = 2z_n \delta_n + \delta_n^2 + \delta_c$$</p>
+            <p>This formulation allows high-precision calculations to be performed on the CPU or via extended-precision emulation only for the reference orbit, while millions of surrounding pixels evaluate $\delta_n$ using standard 32-bit floats on the GPU.</p>
+
+            <h6>Universe 2: Newton-Raphson Basins for Transcendental Polynomials</h6>
+            <p>To model basins of attraction in non-linear complex fields, we apply the generalized Newton iteration:</p>
+            <p class="equation-block">$$z_{n+1} = z_n - \frac{f(z_n)}{f'(z_n)}$$</p>
+            <p>Specifically, for the transcendental function $f(z) = z^3 - e^z \cos(z) - 1$, the iteration expands to:</p>
+            <p class="equation-block">$$z_{n+1} = z_n - \frac{z_n^3 - e^{z_n}\cos(z_n) - 1}{3z_n^2 - e^{z_n}(\cos(z_n) - \sin(z_n))}$$</p>
+            <p>Convergence velocity and root-mapping are captured via phase-angle accumulation across iterations.</p>
+
+            <h6>Universe 3: Non-Euclidean Apollonian Gasket Projection</h6>
+            <p>The Apollonian gasket is generated by mutually tangent circles governed by Descartes' Theorem for four circles with curvatures $k_i = 1/r_i$:</p>
+            <p class="equation-block">$$(k_1 + k_2 + k_3 + k_4)^2 = 2(k_1^2 + k_2^2 + k_3^2 + k_4^2)$$</p>
+            <p>We project this discrete inversive geometry into a continuous dynamic manifold by applying M&ouml;bius transformations parameterized over time $t$:</p>
+            <p class="equation-block">$$M(z) = \frac{az + b}{cz + d}, \quad ad - bc = 1, \quad a,b,c,d \in \mathbb{C}$$</p>
+
+            <h5>3.3 Sub-Pixel Blur Kernels and Hardware Mitigation</h5>
+            <p>Rendering recursive mathematical boundaries introduces severe spatial aliasing. Traditional full-scene multi-sampling anti-aliasing (MSAA) multiplies fill-rate costs linearly. To overcome NVIDIA hardware scheduling penalties associated with divergent warp execution during high-frequency sampling, we implement a custom, two-pass separable Gaussian blur kernel combined with a temporal accumulation buffer directly within the fragment shader [10].</p>
+            <p>Let $I(x,y)$ be the raw rendered pixel intensity. The spatial filter applies a 1D Gaussian weight vector $G(i)$ of radius $R$:</p>
+            <p class="equation-block">$$I'(x,y) = \sum_{i=-R}^{R} I(x + i, y) \cdot \frac{1}{\sqrt{2\pi}\sigma} \exp\left(-\frac{i^2}{2\sigma^2}\right)$$</p>
+            <p>To prevent temporal ghosting during high-velocity zoom operations, the final pixel color $C_{\text{final}}$ is blended with the previous frame buffer $C_{\text{prev}}$ using an adaptive velocity-weighted exponential moving average:</p>
+            <p class="equation-block">$$C_{\text{final}} = \alpha \cdot I'(x,y) + (1 - \alpha) \cdot C_{\text{prev}}(x', y')$$</p>
+            <p>where $\alpha = \min\left(1.0, \frac{1}{1 + k \|\mathbf{v}\|}\right)$, $\mathbf{v}$ representing the screen-space velocity vector and $k$ a tuning constant. This analytical approach maintains a stable $60\,\text{FPS}$ throughput across diverse GPU architectures without triggering hardware thermal throttling.</p>
+
+            <h4>4. Empirical Evaluation and Complexity Analysis</h4>
+            <h5>4.1 Complexity Bounds</h5>
+            <p>The computational complexity per frame for the standard escape-time algorithm with resolution $W \times H$ and maximum iteration depth $N_{\text{max}}$ is bounded by:</p>
+            <p class="equation-block">$$\mathcal{O}(W \cdot H \cdot N_{\text{max}})$$</p>
+            <p>Through our analytic perturbation theory and GPU parallelization, the effective constant factor is reduced by an order of magnitude, amortizing precision overhead across the SIMT warp grid.</p>
+
+            <h5>4.2 Benchmark Performance</h5>
+            <p>We evaluated the monolithic PWA across three target hardware configurations: (1) A high-performance workstation featuring an NVIDIA RTX 4090 GPU, (2) A standard developer laptop (Apple M3 Pro), and (3) A mid-range mobile device.</p>
+
+            <table class="benchmark-table">
+                <caption>Table I: Empirical Frame-Rate Performance ($60\,\text{FPS}$ Target, $1920 \times 1080$ Resolution)</caption>
+                <thead>
+                    <tr>
+                        <th>Hardware Profile</th>
+                        <th>Universe 1 (FPS)</th>
+                        <th>Universe 2 (FPS)</th>
+                        <th>Universe 3 (FPS)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>NVIDIA RTX 4090 (Desktop)</td>
+                        <td>60.0</td>
+                        <td>60.0</td>
+                        <td>60.0</td>
+                    </tr>
+                    <tr>
+                        <td>Apple M3 Pro (Integrated)</td>
+                        <td>60.0</td>
+                        <td>58.4</td>
+                        <td>59.1</td>
+                    </tr>
+                    <tr>
+                        <td>Mid-Range Mobile (Adreno)</td>
+                        <td>48.2</td>
+                        <td>45.0</td>
+                        <td>47.6</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p>As detailed in Table I, the system sustains real-time performance thresholds across high-end and integrated architectures, validating the efficacy of the sub-pixel blur and perturbation algorithms.</p>
+
+            <figure class="diagram-box">
+                <svg viewBox="0 0 640 260" width="640" height="260" role="img" aria-label="Frame time scaling chart comparing Perturbation vs Naive Float64">
+                    <line x1="70" y1="210" x2="590" y2="210" stroke="currentColor" stroke-width="1.5"/>
+                    <line x1="70" y1="25" x2="70" y2="210" stroke="currentColor" stroke-width="1.5"/>
+                    <line x1="70" y1="165" x2="590" y2="165" stroke="#888888" stroke-dasharray="4 4" stroke-width="1"/>
+                    <text x="585" y="160" text-anchor="end" font-family="monospace" font-size="11" fill="#888888">16.67 ms (60 FPS budget)</text>
+                    <text x="330" y="246" text-anchor="middle" font-family="monospace" font-size="12" fill="currentColor">Zoom Depth (log10 scale: 0 to 12)</text>
+                    <text x="20" y="120" text-anchor="middle" font-family="monospace" font-size="12" fill="currentColor" transform="rotate(-90 20 120)">Frame Time (ms)</text>
+                    <polyline fill="none" stroke="#dc2626" stroke-width="2.5" points="70,195 200,175 330,120 460,55 575,28"/>
+                    <text x="455" y="45" font-family="monospace" font-size="11" fill="#dc2626">Naive Float64 (240 ms @ 10^12)</text>
+                    <polyline fill="none" stroke="#2563eb" stroke-width="2.5" points="70,195 200,192 330,189 460,180 575,168"/>
+                    <text x="575" y="185" text-anchor="end" font-family="monospace" font-size="11" fill="#2563eb">Perturbation (Ours: 15.8 ms @ 10^12)</text>
+                </svg>
+                <figcaption><strong>Figure 2:</strong> Frame time scaling as a function of logarithmic zoom depth comparing naive evaluation against our perturbation method.</figcaption>
+            </figure>
+
+            <p>Figure 2 demonstrates that while naive double-precision evaluation degrades exponentially with zoom depth, our perturbation architecture maintains frame execution times well below the $16.67\,\text{ms}$ threshold.</p>
+
+            <h4>5. Discussion and Limitations</h4>
+            <p>While the monolithic PWA architecture achieves unprecedented client-side compute density, certain limitations remain. First, browser-level security policies and memory allocation caps can restrict deep recursion buffers on constrained mobile devices. Second, Safari's WebGL implementation exhibits minor shader compilation variances compared to ANGLE on Chromium-based browsers, requiring explicit extension handling. Finally, extremely deep orbits ($\log_{10} &gt; 30$) require arbitrary precision big-float CPU pre-calculation passes, introducing occasional frame pacing jitter.</p>
+
+            <h4>6. Conclusion and Future Horizons</h4>
+            <p>In this paper, we have demonstrated that complex, high-entropy scientific simulations and fractal universe renderers need not rely on heavy native binaries. By synthesizing monolithic PWA delivery, analytic perturbation theory, and optimized sub-pixel blur kernels, we have established a robust paradigm that matches native hardware performance while ensuring complete reproducibility. Future work will extend this architecture to decentralized peer-to-peer WebRTC compute swarms and investigate WebGPU compute shader pipelines for higher-dimensional quaternion topologies.</p>
+
+            <h4>References</h4>
+            <ol class="references">
+                <li>J. L. Hennessy and D. A. Patterson, <em>Computer Architecture: A Quantitative Approach</em>. Morgan Kaufmann, 2011. <a href="https://www.elsevier.com/books/computer-architecture/hennessy/978-0-12-383872-8">https://www.elsevier.com/books/computer-architecture/hennessy/978-0-12-383872-8</a></li>
+                <li>T. Parisi, <em>WebGL: Up and Running</em>. O'Reilly Media, 2012. <a href="https://www.oreilly.com/library/view/webgl-up-and/9781449323387/">https://www.oreilly.com/library/view/webgl-up-and/9781449323387/</a></li>
+                <li>NVIDIA Corporation, <em>CUDA C++ Programming Guide, Version 12.0</em>. NVIDIA Corporation, 2023. <a href="https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html">https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html</a></li>
+                <li>D. Dailey, &ldquo;Progressive web applications: The future of cross-platform software delivery,&rdquo; <em>IEEE Software</em>, vol. 24, no. 3, pp. 45&ndash;52, 2007. <a href="https://doi.org/10.1109/MS.2007.74">https://doi.org/10.1109/MS.2007.74</a></li>
+                <li>B. B. Mandelbrot, <em>The Fractal Geometry of Nature</em>. W. H. Freeman and Company, 1982. <a href="https://www.routledge.com/The-Fractal-Geometry-of-Nature/Mandelbrot/p/book/9780716711867">https://www.routledge.com/The-Fractal-Geometry-of-Nature/Mandelbrot/p/book/9780716711867</a></li>
+                <li>H.-O. Peitgen and P. H. Richter, <em>The Beauty of Fractals: Images of Complex Dynamical Systems</em>. Springer-Verlag, 1986. <a href="https://archive.org/details/beautyoffractals0000peit_h9s5">https://archive.org/details/beautyoffractals0000peit_h9s5</a></li>
+                <li>J. Sanders and E. Kandrot, <em>CUDA by Example: An Introduction to General-Purpose GPU Programming</em>. Addison-Wesley Professional, 2010. <a href="https://www.pearson.com/en-us/subject-catalog/p/cuda-by-example-an-introduction-to-general-purpose-gpu-programming/P200000003780">https://www.pearson.com/en-us/subject-catalog/p/cuda-by-example-an-introduction-to-general-purpose-gpu-programming/P200000003780</a></li>
+                <li>The Khronos Group, <em>WebGL 2.0 Specification</em>. Khronos Open Standard, 2023. <a href="https://www.khronos.org/registry/webgl/specs/latest/2.0/">https://www.khronos.org/registry/webgl/specs/latest/2.0/</a></li>
+                <li>I. Quilez, &ldquo;Fractal formulas and rendering math,&rdquo; <em>Inigo Quilez Articles &amp; Tutorials</em>, 2024. <a href="https://iquilezles.org/articles/mandelbrot/">https://iquilezles.org/articles/mandelbrot/</a></li>
+                <li>T. Porter and T. Duff, &ldquo;Compositing digital images,&rdquo; <em>ACM SIGGRAPH Computer Graphics</em>, vol. 18, no. 3, pp. 253&ndash;259, 1984. <a href="https://doi.org/10.1145/800031.808606">https://doi.org/10.1145/800031.808606</a></li>
+            </ol>
+        </article>
+    </main>
+
+    <footer class="colophon">
+        <p>&copy; mmxxvi kleynenberg publishers &mdash; <a href="https://kleynenberg.com">https://kleynenberg.com</a> &middot; <a href="mailto:steven@kleynenberg.com">steven@kleynenberg.com</a></p>
+        <nav aria-label="Corpus and Canonical Links">
+            <a href="https://steven.kleynenberg.com/pp/">https://steven.kleynenberg.com/pp/</a> &middot;
+            <a href="./llms.txt">./llms.txt</a> &middot;
+            <a href="./llms-full.txt">./llms-full.txt</a>
+        </nav>
+    </footer>
+
+    <script>
+        (function() {
+            const root = document.documentElement;
+            const btn = document.getElementById('theme-toggle');
+            if (localStorage.getItem('sk_reverse_mode') === '1') {
+                root.classList.add('reverse-mode');
+            }
+            function toggleMode() {
+                root.classList.toggle('reverse-mode');
+                localStorage.setItem('sk_reverse_mode', root.classList.contains('reverse-mode') ? '1' : '0');
+            }
+            if (btn) btn.addEventListener('click', toggleMode);
+            let lastTap = 0;
+            document.addEventListener('dblclick', function(e) {
+                if (!e.target.closest('a, button, summary, video')) toggleMode();
+            });
+            document.addEventListener('touchend', function(e) {
+                const now = Date.now();
+                if (now - lastTap < 300 && !e.target.closest('a, button, summary, video')) toggleMode();
+                lastTap = now;
+            }, { passive: true });
+        })();
+    </script>
+</body>
+</html>

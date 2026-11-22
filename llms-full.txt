@@ -1,0 +1,40 @@
+# Personal Projects (PP) — Complete R&D Workbench Corpus
+Canonical URL: https://steven.kleynenberg.com/pp/llms-full.txt
+Author: Steven Kleynenberg
+Environment: Fedora Linux Workstation (hp.kleynenberg.net), Android SDK 34, Python 3, Java 17
+
+================================================================================
+1. AUDIOTAP v18a GEMINI MASTER — NEURO-ACOUSTIC EDITION
+================================================================================
+Package Name: com.kleynenberg.audiotap
+Version: 17.0-gemini-master (AndroidManifest) / v18a WebAudio DSP & SAF Update
+Build Architecture:
+- Pure Android SDK build via Makefile without Gradle or AndroidX dependencies.
+- Toolchain: aapt -> javac --release 17 -> d8 -> zipalign -> apksigner (targetSdkVersion 34, minSdkVersion 25).
+- Flattened Java architecture using WeakReference-bound Runnables and callbacks (MainActivity, AudioService, AudioTapChromeClient, AudioTapWebViewClient, WebAppInterface, SessionCallback) to prevent D8 dexer issues and Activity memory leaks.
+- Includes v18_nexus_fix.py Storage Access Framework (SAF) patch enabling audio/*, application/ogg, and application/x-flac file selection on legacy API 24 tablets (Google Nexus 9) alongside modern Android devices (Google Pixel 10).
+- Enables AudioManager.setAllowedCapturePolicy(AudioAttributes.ALLOW_CAPTURE_BY_ALL) so Android screen recorders capture internal DSP output cleanly.
+
+WebAudio DSP & Cybernetic Homeostasis Engine (assets/www/index.html):
+- 10-band BiquadFilterNode graphic equalizer at 32, 64, 125, 250, 500, 1000, 2000, 4000, 8000, and 16000 Hz (peaking filters with lowshelf -40 dB cutoff at minimum fader travel).
+- Per-band AnalyserNode RMS energy monitoring: unpinned bands dynamically attenuate by 2.5% when peak signal hits >= 0.985 (HOMEOSTASIS: CUT) and boost by 1.0% when signal drops below 0.15 (HOMEOSTASIS: BOOST). Individual bands can be locked via LED pin toggles.
+- Relative fader drag physics with 0.35 sensitivity damping and tactile haptic ticks every 5% step via navigator.vibrate(6).
+- Dual HTML5 Canvas vintage Technics watt/dB meters simulating damping-oil thermal viscosity (viscosityFactor = 1.0 + (temp/100)*2.2) and thermal end-stop peg incandescence (crimson -> amber -> white-hot glow).
+
+================================================================================
+2. LOCAL PROJECT TRAWLER (v3.1.1)
+================================================================================
+- Deterministic local repository scanner classifying projects across 7 technical categories.
+- Extracts Python AST structures, Makefiles, manifests, and source headers while enforcing strict privacy-directory exclusions.
+- Uses SHA-256 content hashing to cache unchanged artefacts and generate structured Markdown/HTML summaries.
+
+================================================================================
+3. GEMSIDE MCP BRIDGE & HARDWARE TELEMETRY
+================================================================================
+- GemSide (gemside-mcp-bridge): Chrome Side Panel extension communicating with a local Python Native Messaging host for controlled shell execution and DOM extraction.
+- Biometric & RF Edge Prototypes: Cross-platform Python BLE readers for Zephyr BioHarness and Polar H7 RR-interval telemetry, plus Marvin LoRaWAN nodes on The Things Network.
+
+## 3D Fractal Multiverse PWA
+- Dossier & Inline Paper: https://steven.kleynenberg.com/pp/fract/
+- Live Google Cloud App: https://fract.kleynenberg.com/
+- Corpus: https://steven.kleynenberg.com/pp/fract/llms-full.txt

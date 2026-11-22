@@ -1,0 +1,23 @@
+# Personal Projects (PP) — R&D Workbench
+> Canonical URL: https://steven.kleynenberg.com/pp/
+> Author: Steven Kleynenberg (Delft, The Netherlands)
+> Parent Index: https://steven.kleynenberg.com/llms.txt
+
+## Overview
+Personal Projects (PP) documents the experimental software, digital signal processing (DSP), and automation toolchains built on Steven Kleynenberg's Fedora Linux workstation.
+
+## Highlighted Workbench Projects
+1. AudioTap v18a Gemini Master - Neuro-Acoustic Edition (com.kleynenberg.audiotap):
+   - Zero-AndroidX, zero-Gradle pure Java 17 / Android SDK 34 application built via Makefile (aapt, javac, d8, zipalign, apksigner).
+   - 10-band WebAudio Biquad equalizer (32 Hz – 16 kHz) with cybernetic RMS homeostasis auto-cut/auto-boost on unpinned bands, haptic fader detents, and dual HTML5 Canvas Technics VU meters with damping-oil viscosity and thermal peg glow physics.
+   - Foreground AudioService with MediaSession lockscreen controls, ALLOW_CAPTURE_BY_ALL audio capture policy, and SAF file chooser compatibility for Nexus 9 (API 24) and Pixel 10.
+2. Local Project Trawler (local_project_trawler.py v3.1.1):
+   - Deterministic AST/code-DNA analyzer with hard privacy-sandbox exclusions, SHA-256 incremental hashing, and automated documentation synthesis.
+3. GemSide MCP Bridge & Linux Tooling:
+   - Chrome Side Panel extension + Python Native Messaging host bridge, BLE biometric readers, and LoRaWAN edge telemetry scripts.
+
+## Full Technical Documentation
+- Full PP Dossier: https://steven.kleynenberg.com/pp/llms-full.txt
+
+- 3D Fractal Multiverse PWA (Dossier & Paper): https://steven.kleynenberg.com/pp/fract/
+- 3D Fractal Multiverse PWA (Live Cloud): https://fract.kleynenberg.com/

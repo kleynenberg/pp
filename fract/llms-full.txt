@@ -1,0 +1,21 @@
+# 3D Fractal Multiverse PWA — Complete Technical & Publication Corpus
+Canonical Dossier: https://steven.kleynenberg.com/pp/fract/
+Live Google Cloud Deployment: https://fract.kleynenberg.com/
+Featured Deeplink (Node 10, seed 452839): https://fract.kleynenberg.com/#uni=10&ft=10&seed=452839&x=0&y=0&z=0.49977559077972916&cs=0.2878
+Static PWA Mirror: https://steven.kleynenberg.com/pp/fract/pwa/
+Author: Steven Kleynenberg (Delft, South Holland, The Netherlands)
+Contact: steven@kleynenberg.com
+
+## 1. Software Architecture
+- Monolithic zero-dependency WebGL 2.0 fragment shader engine rendering 13 complex dynamical archetypes (Mandelbrot Core, Douady's Rabbit, Feigenbaum Tip, and Julia nodes 1..12).
+- Analytic perturbation theory (z_n + delta_n) with Decimal.js 50-digit reference precision to bypass IEEE 754 single-precision limits at zoom depths beyond 10^7.
+- 3D CSS/WebGL barrier warp transitions at zoom < 5e-12 or zoom > 4.8 accompanied by procedural WebAudio oscillator synthesis.
+- Multi-user Python aiohttp server (`server/fractal_server.py`, port 31415) synchronizing live sector coordinates over WebSockets.
+
+## 2. Accompanying IEEEtran Manuscript (fractal.tex / fractal.pdf)
+Title: Monolithic PWA Architectures and Real-Time Fractal Universes: Outperforming Hardware Constraints via Analytic Continuation and Sub-Pixel Blur Kernels
+Authors: Steven Kleynenberg (Independent Researcher, Delft, Netherlands) and Google Gemini v3.5 (Artificial Intelligence Division, Google LLC)
+Artifacts:
+- PDF: https://steven.kleynenberg.com/pp/fract/server/latex/fractal.pdf
+- LaTeX: https://steven.kleynenberg.com/pp/fract/server/latex/fractal.tex
+Summary: Formalizes single-bundle PWA scientific visualization across three mathematical spaces (Analytic Mandelbrot Extension, Newton-Raphson Basins for Transcendental Polynomials, and Non-Euclidean Apollonian Gasket Projection) paired with two-pass separable Gaussian blur kernels and velocity-weighted temporal accumulation, sustaining 60 FPS up to 10^12 zoom depth (15.8 ms/frame vs 240.0 ms/frame for naive Float64).

@@ -1,0 +1,316 @@
+<!-- ============================================================================ -->
+<!-- INTEGRITY HEADER - GEMINI AI                                                 -->
+<!-- File: pp/index.html                                                          -->
+<!-- Application: Personal Projects — Sovereign R&D & DSP Workbench               -->
+<!-- ============================================================================ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Projects (PP) — R&amp;D Workbench | Steven Kleynenberg</title>
+    <meta name="description" content="Personal Projects (PP) R&D Workbench of Steven Kleynenberg: deterministic AST/DNA project trawler pipelines, AudioTap v18a Neuro-Acoustic WebAudio DSP & Java 17 Android engine, and automated publishing toolchains.">
+    <link rel="canonical" href="https://steven.kleynenberg.com/pp/">
+    <link rel="alternate" type="text/plain" title="PP LLM Summary" href="https://steven.kleynenberg.com/pp/llms.txt">
+    <link rel="alternate" type="text/plain" title="PP LLM Full Corpus" href="https://steven.kleynenberg.com/pp/llms-full.txt">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Mono:wght@400;700&family=Atkinson+Hyperlegible+Next:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      "@id": "https://steven.kleynenberg.com/pp/#collection",
+      "name": "Personal Projects — Sovereign R&D & DSP Workbench",
+      "url": "https://steven.kleynenberg.com/pp/",
+      "author": {
+        "@type": "Person",
+        "name": "Steven Kleynenberg",
+        "url": "https://steven.kleynenberg.com/"
+      },
+      "hasPart": [
+        {
+          "@type": "SoftwareSourceCode",
+          "name": "local_project_trawler.py (v3.1.1)",
+          "programmingLanguage": "Python",
+          "description": "Deterministic AST and code-DNA extraction pipeline with strict privacy sandboxing, SHA-256 caching, and Vertex AI Gemini synthesis."
+        },
+        {
+          "@type": "SoftwareApplication",
+          "name": "AudioTap v18a Gemini Master (Neuro-Acoustic Edition)",
+          "applicationCategory": "MultimediaApplication",
+          "operatingSystem": "Android (API 25-34)",
+          "softwareVersion": "18a",
+          "description": "Zero-AndroidX pure Java 17 / Android SDK 34 audio engine with 10-band Biquad cybernetic homeostasis EQ, haptic faders, and thermal Technics VU meter physics."
+        }
+      ]
+    }
+    </script>
+    <style>
+        :root {
+            --bg-main: #ffffff;
+            --bg-surface: #fafafa;
+            --text-primary: #111111;
+            --text-secondary: #4a4a4a;
+            --text-muted: #767676;
+            --border-color: #e0e0e0;
+            --border-strong: #111111;
+            --accent: #0056b3;
+        }
+        html.reverse-mode {
+            --bg-main: #000000;
+            --bg-surface: #0a0a0a;
+            --text-primary: #f5f5f5;
+            --text-secondary: #c0c0c0;
+            --text-muted: #888888;
+            --border-color: #262626;
+            --border-strong: #f5f5f5;
+            --accent: #66b2ff;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-primary);
+            font-family: 'Atkinson Hyperlegible Next', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.65;
+            transition: background-color 0.2s ease, color 0.2s ease;
+            padding: 3rem 1.5rem 5rem;
+            max-width: 980px;
+            margin: 0 auto;
+        }
+        .top-bar {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 2.5rem;
+            font-family: 'Atkinson Hyperlegible Mono', monospace;
+            font-size: 0.78rem;
+            letter-spacing: 0.04em;
+        }
+        .nav-group { display: flex; flex-wrap: wrap; gap: 0.85rem; align-items: center; }
+        .top-bar a { color: var(--text-primary); text-decoration: none; border-bottom: 1px solid transparent; }
+        .top-bar a:hover, .top-bar a.active { border-bottom-color: var(--border-strong); font-weight: 700; }
+        .mode-btn {
+            background: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            font-family: 'Atkinson Hyperlegible Mono', monospace;
+            font-size: 0.72rem;
+            padding: 0.25rem 0.6rem;
+            cursor: pointer;
+            text-transform: uppercase;
+        }
+        .mode-btn:hover { border-color: var(--border-strong); color: var(--text-primary); }
+        header.hero { margin-bottom: 3rem; }
+        .eyebrow {
+            font-family: 'Atkinson Hyperlegible Mono', monospace;
+            font-size: 0.78rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-muted);
+            margin-bottom: 0.5rem;
+        }
+        .hero-header-row {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1.5rem;
+        }
+        .brand-logo {
+            max-height: 64px;
+            width: auto;
+            display: block;
+            border: 1px solid var(--border-color);
+            padding: 4px;
+            background: #ffffff;
+        }
+        h1 { font-size: clamp(1.85rem, 3.8vw, 2.6rem); font-weight: 700; line-height: 1.15; letter-spacing: -0.02em; margin-bottom: 0.75rem; }
+        .lead { font-size: 1.08rem; color: var(--text-secondary); max-width: 780px; }
+        .meta-strip {
+            display: flex; flex-wrap: wrap; gap: 1.5rem; margin-top: 1.25rem;
+            font-family: 'Atkinson Hyperlegible Mono', monospace; font-size: 0.78rem; color: var(--text-muted);
+        }
+        h2.section-title {
+            font-family: 'Atkinson Hyperlegible Mono', monospace;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--text-primary);
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--border-strong);
+            margin: 2.75rem 0 1.25rem;
+        }
+        .grid { display: grid; grid-template-columns: 1fr; gap: 1.25rem; }
+        article.card {
+            border: 1px solid var(--border-color);
+            background: var(--bg-surface);
+            padding: 1.4rem 1.5rem;
+        }
+        .card-header { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 0.5rem; margin-bottom: 0.45rem; }
+        .card-tag { font-family: 'Atkinson Hyperlegible Mono', monospace; font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; }
+        article.card h3 { font-size: 1.22rem; font-weight: 700; margin-bottom: 0.45rem; }
+        article.card p { color: var(--text-secondary); font-size: 0.98rem; margin-bottom: 0.75rem; }
+        article.card ul { margin: 0.4rem 0 0.85rem 1.25rem; color: var(--text-secondary); font-size: 0.95rem; }
+        article.card li { margin-bottom: 0.3rem; }
+        .url-list {
+            font-family: 'Atkinson Hyperlegible Mono', monospace;
+            font-size: 0.78rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.3rem;
+            margin-top: 0.65rem;
+            padding-top: 0.65rem;
+            border-top: 1px dashed var(--border-color);
+        }
+        .url-list a { color: var(--accent); text-decoration: none; word-break: break-all; }
+        .url-list a:hover { text-decoration: underline; }
+        table.manifest-table {
+            width: 100%; border-collapse: collapse; font-family: 'Atkinson Hyperlegible Mono', monospace; font-size: 0.8rem; margin-top: 0.75rem;
+        }
+        table.manifest-table th, table.manifest-table td {
+            text-align: left; padding: 0.65rem 0.5rem; border-bottom: 1px solid var(--border-color); vertical-align: top;
+        }
+        table.manifest-table th { color: var(--text-muted); font-weight: 700; text-transform: uppercase; font-size: 0.72rem; }
+        table.manifest-table a { color: var(--accent); text-decoration: none; word-break: break-all; }
+        table.manifest-table a:hover { text-decoration: underline; }
+        footer.colophon {
+            margin-top: 4rem; padding-top: 1.5rem; border-top: 1px solid var(--border-color);
+            font-family: 'Atkinson Hyperlegible Mono', monospace; font-size: 0.76rem; color: var(--text-muted);
+            display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem;
+        }
+        footer.colophon a { color: var(--text-primary); text-decoration: none; }
+        footer.colophon a:hover { text-decoration: underline; }
+
+    </style>
+</head>
+<body>
+    <nav class="top-bar" aria-label="Primary portal navigation">
+        <div class="nav-group">
+            <a href="../index.html">steven.kleynenberg.com</a> <a href="../papers/index.html">/papers/</a> <a href="../kso/index.html">/kso/</a> <a href="../pp/index.html" class="active">/pp/</a> <a href="../kp/index.html">/kp/</a> <a href="../tkp/index.html">/tkp/</a>
+        </div>
+        <div class="nav-group">
+            <a href="./llms.txt">llms.txt</a>
+            <a href="./llms-full.txt">llms-full.txt</a>
+            <button type="button" class="mode-btn" id="theme-toggle" title="Double-tap page or click to toggle Reverse Dark Mode">Invert</button>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="eyebrow">R&amp;D WORKBENCH // EXPERIMENTAL SYSTEMS, DSP &amp; AUTOMATION</div>
+        <h1>Personal Projects (PP)</h1>
+        <p class="lead">The internal engineering workbench behind Kleynenberg Publishers and Kleynenberg Software Ontwikkeling. Built on first-principles Linux engineering: zero-bloat toolchains, deterministic code analysis, bare-SDK Android builds, and real-time WebAudio DSP.</p>
+        <div class="meta-strip">
+            <span>HOST: FEDORA LINUX WORKSTATION</span>
+            <span>PRINCIPLE: ZERO VENV &middot; ZERO BLOAT</span>
+            <span>CANONICAL: https://steven.kleynenberg.com/pp/</span>
+        </div>
+    </header>
+
+    <main>
+        <h2 class="section-title">01 // Flagship Workbench Systems</h2>
+        <div class="grid">
+            <article class="card">
+                <div class="card-header">
+                    <span class="card-tag">WebGL 2.0 &middot; WebAudio &middot; Python aiohttp &middot; IEEEtran</span>
+                    <span class="card-tag">Live Cloud + Dossier</span>
+                </div>
+                <h3>3D Fractal Multiverse PWA</h3>
+                <p>Monolithic WebGL 2.0 fractal exploration engine rendering 13 Peitgen/Mandelbrot/Julia archetypes with analytic perturbation theory (Decimal.js), 3D barrier warp transitions, procedural WebAudio synthesis, multi-user Python aiohttp telemetry, video demos, and an inline IEEEtran research paper.</p>
+                <div class="url-list">
+                    <a href="https://steven.kleynenberg.com/pp/fract/">https://steven.kleynenberg.com/pp/fract/ (Project Dossier &amp; Inline Paper)</a>
+                    <a href="https://fract.kleynenberg.com/#uni=10&amp;ft=10&amp;seed=452839&amp;x=0&amp;y=0&amp;z=0.49977559077972916&amp;cs=0.2878" target="_blank" rel="noopener noreferrer">https://fract.kleynenberg.com/#uni=10&amp;ft=10&amp;seed=452839&amp;x=0&amp;y=0&amp;z=0.49977559077972916&amp;cs=0.2878</a>
+                    <a href="https://steven.kleynenberg.com/pp/fract/llms.txt">https://steven.kleynenberg.com/pp/fract/llms.txt</a>
+                </div>
+            </article>
+
+            <article class="card">
+                <div class="card-header">
+                    <span class="card-tag">Android SDK 34 &middot; Java 17 &middot; WebAudio DSP</span>
+                    <span class="card-tag">v18a Neuro-Acoustic Edition</span>
+                </div>
+                <h3>AudioTap (com.kleynenberg.audiotap)</h3>
+                <p>A bespoke, self-contained Android and WebAudio DSP engine built entirely without Gradle or AndroidX overhead. Compiled directly via Makefile using <code>aapt</code>, <code>javac --release 17</code>, <code>d8</code>, <code>zipalign</code>, and <code>apksigner</code> against <code>android-34</code> with flattened, leak-free <code>WeakReference</code> Java classes.</p>
+                <ul>
+                    <li><strong>Neuro-Acoustic 10-Band Biquad EQ &amp; Cybernetic Homeostasis:</strong> Real-time WebAudio peaking/lowshelf filter bank (32 Hz to 16 kHz) monitored per band by dedicated <code>AnalyserNode</code> RMS detectors. Unpinned bands automatically attenuate during sustained peak saturation (<code>HOMEOSTASIS: CUT</code>) and gently recover during quiet passages (<code>HOMEOSTASIS: BOOST</code>), paired with tactile haptic detent feedback (<code>navigator.vibrate(6)</code>).</li>
+                    <li><strong>Thermal Damping-Oil VU Physics:</strong> Dual HTML5 Canvas vintage Technics-style watt/dB meters simulating acoustic damping-oil viscosity (<code>viscosityFactor</code>) and thermal overload glow on the right end-stop peg (transitioning from crimson to amber to white-hot under sustained clipping).</li>
+                    <li><strong>System-Wide MediaSession &amp; SAF Integration:</strong> Foreground <code>AudioService</code> with lockscreen transport controls, <code>AudioAttributes.ALLOW_CAPTURE_BY_ALL</code> for clean screen-recorder audio capture, and Storage Access Framework (SAF) intent routing (<code>v18_nexus_fix.py</code>) verified on both Google Pixel 10 and legacy Nexus 9 (API 24) hardware.</li>
+                </ul>
+                <div class="url-list">
+                    <a href="https://steven.kleynenberg.com/pp/">https://steven.kleynenberg.com/pp/</a>
+                    <a href="https://steven.kleynenberg.com/pp/llms-full.txt">https://steven.kleynenberg.com/pp/llms-full.txt</a>
+                </div>
+            </article>
+
+            <article class="card">
+                <div class="card-header">
+                    <span class="card-tag">Python AST &middot; SHA-256 Cache &middot; Vertex AI</span>
+                    <span class="card-tag">v3.1.1</span>
+                </div>
+                <h3>Local Project Trawler (local_project_trawler.py)</h3>
+                <p>Deterministic repository crawler and knowledge-graph synthesizer designed to inventory and classify multi-decade local codebases across seven engineering domains without leaking private data.</p>
+                <ul>
+                    <li><strong>Deterministic Code-DNA Extraction:</strong> Parses Python ASTs, shell/Makefile build recipes, HTML/JS manifests, and C/C++ headers to extract structural signatures, dependencies, and architectural intent.</li>
+                    <li><strong>Strict Privacy Sandbox &amp; SHA-256 Incremental Caching:</strong> Enforces hard path-exclusion filters (blocking private or clinical directories before disk reads) and caches unchanged project fingerprints via SHA-256 hashes prior to synthesis.</li>
+                </ul>
+                <div class="url-list">
+                    <a href="https://steven.kleynenberg.com/pp/llms.txt">https://steven.kleynenberg.com/pp/llms.txt</a>
+                </div>
+            </article>
+
+            <article class="card">
+                <div class="card-header">
+                    <span class="card-tag">Browser-Native MCP &amp; Linux Daemons</span>
+                    <span class="card-tag">Chrome Extension / Python / C</span>
+                </div>
+                <h3>GemSide MCP Bridge &amp; Sovereign Desktop Tooling</h3>
+                <p>Open-source browser-to-host automation and audio-hardware utilities developed for Fedora Linux workstations:</p>
+                <ul>
+                    <li><strong>GemSide (gemside-mcp-bridge):</strong> Chrome Side Panel extension paired with a Python Native Messaging MCP host bridge enabling deterministic local shell orchestration and recursive DOM text extraction.</li>
+                    <li><strong>Embedded &amp; RF Telemetry Utilities:</strong> Custom Python USB/BLE acquisition tools, LoRaWAN/TTN environmental sensor nodes (<code>molen-de-roos</code> gateway), and systemd audio keep-alive daemons.</li>
+                </ul>
+                <div class="url-list">
+                    <a href="https://steven.kleynenberg.com/">https://steven.kleynenberg.com/</a>
+                    <a href="https://kso.kleynenberg.com/">https://kso.kleynenberg.com/</a>
+                </div>
+            </article>
+        </div>
+    </main>
+
+    <footer class="colophon">
+        <div>&copy; mmxxvi kleynenberg publishers &mdash; <a href="https://kleynenberg.com">https://kleynenberg.com</a></div>
+        <div>
+            <a href="https://steven.kleynenberg.com/">https://steven.kleynenberg.com/</a> &middot;
+            <a href="./llms.txt">./llms.txt</a> &middot;
+            <a href="./llms-full.txt">./llms-full.txt</a>
+        </div>
+    </footer>
+    <script>
+        (function() {
+            const root = document.documentElement;
+            const btn = document.getElementById('theme-toggle');
+            if (localStorage.getItem('sk_reverse_mode') === '1') {
+                root.classList.add('reverse-mode');
+            }
+            function toggleMode() {
+                root.classList.toggle('reverse-mode');
+                localStorage.setItem('sk_reverse_mode', root.classList.contains('reverse-mode') ? '1' : '0');
+            }
+            if (btn) btn.addEventListener('click', toggleMode);
+            let lastTap = 0;
+            document.addEventListener('dblclick', function(e) {
+                if (!e.target.closest('a, button, summary')) toggleMode();
+            });
+            document.addEventListener('touchend', function(e) {
+                const now = Date.now();
+                if (now - lastTap < 300 && !e.target.closest('a, button, summary')) toggleMode();
+                lastTap = now;
+            }, { passive: true });
+        })();
+    </script>
+</body>
+</html>

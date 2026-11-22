@@ -1,0 +1,19 @@
+# 3D Fractal Multiverse PWA — Steven Kleynenberg
+
+> Canonical Dossier: https://steven.kleynenberg.com/pp/fract/
+> Live Cloud App: https://fract.kleynenberg.com/
+> Featured Node 10 Deeplink: https://fract.kleynenberg.com/#uni=10&ft=10&seed=452839&x=0&y=0&z=0.49977559077972916&cs=0.2878
+> Static PWA Mirror: https://steven.kleynenberg.com/pp/fract/pwa/
+> Author: Steven Kleynenberg (Delft, The Netherlands) — steven@kleynenberg.com
+
+## Overview
+Monolithic WebGL 2.0 and WebAudio fractal exploration Progressive Web Application featuring 13 Peitgen/Mandelbrot/Julia archetypes, arbitrary-precision perturbation theory via Decimal.js, 3D barrier warp transitions, multi-user Python aiohttp WebSocket telemetry (`fractal_server.py`), video demonstrations, and an accompanying IEEEtran manuscript (`fractal.tex` / `fractal.pdf`).
+
+## Key Artifacts
+- Dossier & Inline Paper: https://steven.kleynenberg.com/pp/fract/
+- Live Cloud Engine: https://fract.kleynenberg.com/
+- Static PWA Mirror: https://steven.kleynenberg.com/pp/fract/pwa/
+- Compiled PDF Paper: https://steven.kleynenberg.com/pp/fract/server/latex/fractal.pdf
+- LaTeX Source: https://steven.kleynenberg.com/pp/fract/server/latex/fractal.tex
+- Python Server Source: https://steven.kleynenberg.com/pp/fract/server/fractal_server.py
+- Full Corpus: https://steven.kleynenberg.com/pp/fract/llms-full.txt
