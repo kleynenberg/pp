@@ -38,3 +38,14 @@ WebAudio DSP & Cybernetic Homeostasis Engine (assets/www/index.html):
 - Dossier & Inline Paper: https://steven.kleynenberg.com/pp/fract/
 - Live Google Cloud App: https://fract.kleynenberg.com/
 - Corpus: https://steven.kleynenberg.com/pp/fract/llms-full.txt
+
+================================================================================
+4. TAKSIE.AI — PERSONAL AI TAX ASSISTANT
+================================================================================
+Live URL: https://taksie.ai/
+Workbench Mirror: https://pp.kleynenberg.com/taksie.ai/
+Architecture & Purpose:
+- Autonomous personal AI tax assistant built for Dutch income tax preparation (Inkomstenbelasting) on behalf of the taxpayer rather than institutional portals.
+- Multi-Document Financial Synthesis: Consolidates annual income statements (jaaropgaven), bank records, mortgage interest, healthcare expenses, and receipts into one consistent fiscal model.
+- Browser-Native Supervised Automation: Executes form inspection and population directly inside the user's browser environment with explicit step-by-step user consent and final review.
+- Deployment: Lightweight Progressive Web App (manifest.json, sw.js, responsive dark-UI HTML/CSS with no external framework bloat) served via TransIP DNS and Netlify at https://taksie.ai/.
