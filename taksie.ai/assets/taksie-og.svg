@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#0F1226"/>
+  <circle cx="180" cy="85" r="45" fill="#4DE3B1"/>
+  <text x="120" y="470" font-family="Inter, Helvetica, Arial, sans-serif" font-size="340" font-weight="800" fill="#FFFFFF">t</text>
+  <text x="420" y="285" font-family="Inter, Helvetica, Arial, sans-serif" font-size="92" font-weight="800" fill="#FFFFFF">taksie.ai</text>
+  <text x="420" y="370" font-family="Inter, Helvetica, Arial, sans-serif" font-size="38" fill="#B9BCD6">AI gaat het makkelijker maken,</text>
+  <text x="420" y="425" font-family="Inter, Helvetica, Arial, sans-serif" font-size="38" fill="#B9BCD6">en leuker</text>
+  <rect x="420" y="470" width="120" height="8" fill="#4DE3B1"/>
+</svg>

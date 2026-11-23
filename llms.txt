@@ -25,3 +25,4 @@ Personal Projects (PP) documents the experimental software, digital signal proce
 - 3D Fractal Multiverse PWA (Dossier & Paper): https://steven.kleynenberg.com/pp/fract/
 - 3D Fractal Multiverse PWA (Live Cloud): https://fract.kleynenberg.com/
 - taksie.ai (Live Production App): https://taksie.ai/
+- taksie.ai (Workbench Mirror): https://pp.kleynenberg.com/taksie.ai/

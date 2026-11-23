@@ -43,6 +43,7 @@ WebAudio DSP & Cybernetic Homeostasis Engine (assets/www/index.html):
 4. TAKSIE.AI — PERSONAL AI TAX ASSISTANT
 ================================================================================
 Live URL: https://taksie.ai/
+Workbench Mirror: https://pp.kleynenberg.com/taksie.ai/
 Architecture & Purpose:
 - Autonomous personal AI tax assistant built for Dutch income tax preparation (Inkomstenbelasting) on behalf of the taxpayer rather than institutional portals.
 - Multi-Document Financial Synthesis: Consolidates annual income statements (jaaropgaven), bank records, mortgage interest, healthcare expenses, and receipts into one consistent fiscal model.
