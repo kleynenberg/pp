@@ -18,7 +18,6 @@ Personal Projects (PP) documents the experimental software, digital signal proce
 
 4. taksie.ai — Personal AI Tax Assistant (https://taksie.ai/):
    - Autonomous AI tax preparation assistant designed to synthesize scattered financial records (annual statements, bank transcripts, mortgage and healthcare deductions) and execute supervised browser-level Dutch tax filing under explicit user approval.
-   - Deployed as a zero-bloat Progressive Web App on https://taksie.ai/ with workbench mirror at https://pp.kleynenberg.com/taksie.ai/.
 
 ## Full Technical Documentation
 - Full PP Dossier: https://steven.kleynenberg.com/pp/llms-full.txt
@@ -26,4 +25,3 @@ Personal Projects (PP) documents the experimental software, digital signal proce
 - 3D Fractal Multiverse PWA (Dossier & Paper): https://steven.kleynenberg.com/pp/fract/
 - 3D Fractal Multiverse PWA (Live Cloud): https://fract.kleynenberg.com/
 - taksie.ai (Live Production App): https://taksie.ai/
-- taksie.ai (Workbench Mirror): https://pp.kleynenberg.com/taksie.ai/
