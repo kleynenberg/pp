@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ============================================================================ -->
+<!-- INTEGRITY HEADER                                                             -->
+<!-- File:        pp/sitemap.xml                                                  -->
+<!-- Host:        https://pp.kleynenberg.com/                                                  -->
+<!-- Protocol:    Sitemaps.org 0.9 (https://www.sitemaps.org/protocol.html)       -->
+<!-- ============================================================================ -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://pp.kleynenberg.com/</loc>
+    <lastmod>2026-11-23</lastmod>
+  </url>
+  <url>
+    <loc>https://pp.kleynenberg.com/llms.txt</loc>
+    <lastmod>2026-11-23</lastmod>
+  </url>
+  <url>
+    <loc>https://pp.kleynenberg.com/llms-full.txt</loc>
+    <lastmod>2026-11-23</lastmod>
+  </url>
+  <url>
+    <loc>https://pp.kleynenberg.com/fract/</loc>
+    <lastmod>2026-11-22</lastmod>
+  </url>
+  <url>
+    <loc>https://pp.kleynenberg.com/fract/llms.txt</loc>
+    <lastmod>2026-11-22</lastmod>
+  </url>
+  <url>
+    <loc>https://pp.kleynenberg.com/fract/llms-full.txt</loc>
+    <lastmod>2026-11-22</lastmod>
+  </url>
+  <url>
+    <loc>https://pp.kleynenberg.com/fract/pwa/</loc>
+    <lastmod>2026-11-22</lastmod>
+  </url>
+  <url>
+    <loc>https://pp.kleynenberg.com/taksie.ai/</loc>
+    <lastmod>2026-11-23</lastmod>
+  </url>
+</urlset>
